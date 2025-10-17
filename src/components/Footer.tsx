@@ -3,7 +3,7 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
+  const mapsUrl = "https://www.google.com/maps/search/?api=1&query=Estrada+Nacional+10+Km+11+2690-361+Santa+Iria+de+Azóia+Portugal";
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 py-12">
@@ -59,10 +59,15 @@ const Footer = () => {
                 <Mail className="h-4 w-4 mt-0.5 flex-shrink-0" />
                 <span>cgltransportestrafego@gmail.com</span>
               </a>
-              <div className="flex items-start gap-2 text-sm text-primary-foreground/80">
-                <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                <span>Estrada Nacional 10 Km 11<br />2690-361 Santa Iria de Azóia, Portugal</span>
-              </div>
+<a 
+  href={mapsUrl} 
+  target="_blank" 
+  rel="noopener noreferrer"
+  className="flex items-start gap-2 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+>
+  <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
+  <span>Estrada Nacional 10 Km 11<br />2690-361 Santa Iria de Azóia, Portugal</span>
+</a>
             </div>
           </div>
 

@@ -8,6 +8,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
+  // Efeito para o scroll da Navbar
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -15,6 +16,14 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // NOVO EFEITO: Rola a página para o topo quando a rota muda
+  useEffect(() => {
+    // Isto é executado sempre que 'location.pathname' (a rota) muda.
+    window.scrollTo(0, 0); 
+    // É uma boa prática fechar o menu mobile também ao navegar.
+    setIsMobileMenuOpen(false); 
+  }, [location.pathname]); // Dependência: só executa quando o caminho da rota muda
 
   const navLinks = [
     { name: "Início", path: "/" },
@@ -70,7 +79,7 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center space-x-3">
             <a href="tel:+351212841177" className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-2">
               <Phone className="h-4 w-4" />
-              +351 212 841 177
+              Ligar
             </a>
             <Button asChild variant="default" size="sm">
               <Link to="/contactos">Pedir Orçamento</Link>
@@ -95,7 +104,7 @@ const Navbar = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  // Removi o onClick com setIsMobileMenuOpen(false) daqui porque o NOVO useEffect já o faz.
                   className={`px-4 py-3 rounded-md text-sm font-medium transition-colors ${
                     isActive(link.path)
                       ? "bg-primary text-primary-foreground"
@@ -111,7 +120,7 @@ const Navbar = () => {
                   +351 212 841 177
                 </a>
                 <Button asChild className="w-full">
-                  <Link to="/contactos" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Link to="/contactos">
                     Pedir Orçamento
                   </Link>
                 </Button>

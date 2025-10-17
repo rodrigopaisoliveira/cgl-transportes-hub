@@ -108,20 +108,27 @@ const Contactos = () => {
                     </div>
                   </a>
 
-                  <div className="flex items-start gap-3 text-muted-foreground">
-                    <div className="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  {/* Morada com link para o Maps, agora apontando para o local correto */}
+                  <a 
+                    href="https://maps.google.com/?cid=10003347754916283150&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start gap-3 text-muted-foreground hover:text-foreground transition-colors group"
+                  >
+                    <div className="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center group-hover:bg-secondary/20 transition-colors flex-shrink-0">
                       <MapPin className="h-5 w-5 text-secondary" />
                     </div>
                     <div>
                       <div className="text-xs text-muted-foreground mb-1">Morada</div>
+                      {/* Endereço atualizado com mais precisão */}
                       <div className="font-medium text-sm">
-                        Estrada Nacional 10 Km 11<br />
+                        Estrada Nacional 10 Km 11, Nº 121<br />
                         Edifício CGL Transportes<br />
-                        2690-361 Santa Iria de Azóia<br />
+                        2690-369 Santa Iria de Azóia<br />
                         Portugal
                       </div>
                     </div>
-                  </div>
+                  </a>
 
                   <div className="flex items-start gap-3 text-muted-foreground">
                     <div className="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -138,18 +145,21 @@ const Contactos = () => {
                 </div>
               </div>
 
-              {/* Map Placeholder */}
-              <div className="bg-muted rounded-lg h-64 flex items-center justify-center">
-                <a
-                  href="https://www.google.com/maps/search/?api=1&query=Estrada+Nacional+10+Km+11+2690-361+Santa+Iria+de+Azoia+Portugal"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <MapPin className="h-12 w-12 mb-2 mx-auto" />
-                  <div className="text-sm">Ver no Google Maps</div>
-                </a>
-              </div>
+              {/* Map Iframe atualizado com o URL de incorporação para a localização */}
+            <div className="rounded-lg overflow-hidden h-64 border border-border">
+              <iframe
+                // URL de incorporação do Google Maps atualizado para a morada
+                src="https://maps.google.com/maps?q=Estrada%20Nacional%2010%20Km%2011%20n%C2%BA%20121%20Edificio%20CGL%20Transportes,%202690-369%20Santa%20Iria%20de%20Azoia&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Localização da CGL Transportes no Google Maps"
+              ></iframe>
+            </div>
+              {/* FIM DA ALTERAÇÃO */}
             </div>
 
             {/* Quote Form */}
