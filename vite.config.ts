@@ -4,8 +4,9 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  // URL base quando o site vive em /<repo> no GitHub Pages:
-  base: "/cgl-transportes-hub/",
+  // Como vais usar um domínio próprio (ex: https://cgltransportes.pt)
+  // o site deve ser servido a partir da raiz "/"
+  base: "/",
 
   server: {
     host: "::",
