@@ -8,6 +8,9 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
+    /* ---------------------------------------------------- */
+    /* NOVA COR PRINCIPAL: Vívido Azul Celeste (207 92% 34%) */
+    /* ---------------------------------------------------- */
     --background: 0 0% 100%;
     --foreground: 210 70% 17%;
 
@@ -17,10 +20,10 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 210 70% 17%;
 
-    --primary: 210 70% 17%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 207 92% 34%; /* NOVO AZUL: #055ba8 */
+    --primary-foreground: 0 0% 100%; /* Branco para contraste */
 
-    --secondary: 188 76% 31%;
+    --secondary: 207 92% 25%; /* Tom um pouco mais escuro do azul para secondary */
     --secondary-foreground: 0 0% 100%;
 
     --muted: 214 20% 96%;
@@ -34,26 +37,29 @@ All colors MUST be HSL.
 
     --border: 214 20% 90%;
     --input: 214 20% 90%;
-    --ring: 210 70% 17%;
+    --ring: 207 92% 34%; /* Usando o novo azul */
 
     --radius: 0.5rem;
 
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(210, 70%, 17%), hsl(210, 70%, 25%));
+    /* Gradients (Ajustados ao novo azul) */
+    --gradient-primary: linear-gradient(135deg, hsl(207, 92%, 34%), hsl(207, 92%, 40%));
     --gradient-secondary: linear-gradient(135deg, hsl(188, 76%, 31%), hsl(188, 76%, 40%));
-    --gradient-hero: linear-gradient(135deg, hsl(210, 70%, 17%) 0%, hsl(188, 76%, 31%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(207, 92%, 34%) 0%, hsl(188, 76%, 31%) 100%); 
     
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 hsl(210 70% 17% / 0.05);
-    --shadow-md: 0 4px 6px -1px hsl(210 70% 17% / 0.1);
-    --shadow-lg: 0 10px 15px -3px hsl(210 70% 17% / 0.1);
-    --shadow-xl: 0 20px 25px -5px hsl(210 70% 17% / 0.15);
+    /* Shadows (Ajustadas para usar o novo primary) */
+    --shadow-sm: 0 1px 2px 0 hsl(207 92% 34% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(207 92% 34% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(207 92% 34% / 0.1);
+    --shadow-xl: 0 20px 25px -5px hsl(207 92% 34% / 0.15);
 
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
+    /* ---------------------------------------------------- */
+    /* MODO ESCURO (A cor primária inverte para branco ou claro, o foreground inverte para o azul escuro) */
+    /* ---------------------------------------------------- */
     --background: 210 70% 17%;
     --foreground: 0 0% 100%;
 
@@ -63,8 +69,8 @@ All colors MUST be HSL.
     --popover: 210 70% 20%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 0 0% 100%;
-    --primary-foreground: 210 70% 17%;
+    --primary: 0 0% 100%; /* Branco (ou um tom claro) como primário no Dark Mode */
+    --primary-foreground: 207 92% 34%; /* NOVO AZUL para o texto sobre o branco */
 
     --secondary: 188 76% 31%;
     --secondary-foreground: 0 0% 100%;
@@ -80,7 +86,7 @@ All colors MUST be HSL.
 
     --border: 210 70% 25%;
     --input: 210 70% 25%;
-    --ring: 0 0% 100%;
+    --ring: 0 0% 100%; /* Usando o branco para o anel no Dark Mode */
   }
 }
 

@@ -1,23 +1,38 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
+// Importar a imagem do logo (o seu logo.png)
+import logo from '@/assets/logo.png'; // **AJUSTE ESTE CAMINHO CONFORME A SUA ESTRUTURA DE PASTAS**
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const mapsUrl = "https://www.google.com/maps/search/?api=1&query=Estrada+Nacional+10+Km+11+2690-361+Santa+Iria+de+Azóia+Portugal";
+  
+  // FUNÇÃO PARA FORÇAR O SCROLL PARA O TOPO (USADO NO CLIQUE DO LOGO)
+  const handleLogoClick = () => {
+    // Rola para o topo da janela
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
+          
+          {/* Company Info com o novo Logo clicável e com scroll to top */}
           <div>
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-primary-foreground/10 rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">CGL</span>
-              </div>
-              <div>
-                <h3 className="font-bold text-sm">TRANSPORTES CARLOS GARCIA</h3>
-                <p className="text-xs text-primary-foreground/70">Grupo CGL Transportes</p>
-              </div>
+            <div className="mb-6"> 
+              {/* LOGO AGORA É CLICÁVEL E VAI PARA O TOPO */}
+              <Link 
+                to="/" 
+                onClick={handleLogoClick} // <--- ALTERAÇÃO AQUI
+              >
+                <img 
+                  src={logo} 
+                  alt="CGL Transportes Logo" 
+                  className="h-14 object-contain" 
+                />
+              </Link>
             </div>
             <p className="text-sm text-primary-foreground/80 leading-relaxed">
               Com mais de 40 anos de experiência em logística e transporte, 
@@ -29,6 +44,7 @@ const Footer = () => {
           <div>
             <h4 className="font-bold mb-4 text-sm uppercase tracking-wider">Links Rápidos</h4>
             <nav className="flex flex-col space-y-2">
+              {/* Mantemos o Link to="/" aqui sem onClick. Se o utilizador clicar, o router não navega. */}
               <Link to="/" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
                 Início
               </Link>
@@ -59,15 +75,15 @@ const Footer = () => {
                 <Mail className="h-4 w-4 mt-0.5 flex-shrink-0" />
                 <span>cgltransportestrafego@gmail.com</span>
               </a>
-<a 
-  href={mapsUrl} 
-  target="_blank" 
-  rel="noopener noreferrer"
-  className="flex items-start gap-2 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
->
-  <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
-  <span>Estrada Nacional 10 Km 11<br />2690-361 Santa Iria de Azóia, Portugal</span>
-</a>
+              <a 
+                href={mapsUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-start gap-2 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+              >
+                <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                <span>Estrada Nacional 10 Km 11<br />2690-361 Santa Iria de Azóia, Portugal</span>
+              </a>
             </div>
           </div>
 
