@@ -15,7 +15,6 @@ const Index = () => {
       title: "Serviço ADR",
       description: "Equipamentos e profissionais certificados para todas as classes de cargas perigosas.",
       features: [
-        "Certificação completa ADR",
         "Equipamentos especializados",
         "Formação contínua"
       ]
@@ -117,7 +116,7 @@ const Index = () => {
             <StatsCounter end={40} suffix="+" label="Anos de Experiência" />
             <StatsCounter end={100} suffix="%" label="Território Nacional" />
             <StatsCounter end={24} suffix="/7" label="Disponibilidade" />
-            <StatsCounter end={2} prefix="" label="Certificações (APA, DGAV)" />
+            <StatsCounter end={1} prefix="" label="Prémio PME Líder" />
           </div>
         </div>
       </section>

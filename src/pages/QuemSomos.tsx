@@ -74,7 +74,7 @@ const QuemSomos = () => {
             <StatsCounter end={40} suffix="+" label="Anos de Experiência" />
             <StatsCounter end={100} suffix="%" label="Território Nacional" />
             <StatsCounter end={24} suffix="/7" label="Disponibilidade" />
-            <StatsCounter end={2} label="Certificações" />
+            <StatsCounter end={1} prefix="" label="Prémio PME Líder" />
           </div>
 
           {/* Values */}
@@ -98,30 +98,32 @@ const QuemSomos = () => {
         </div>
       </section>
 
-      {/* Certifications */}
+      {/* Habilitações */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-foreground mb-6">
-              Certificações e Conformidade
+              Habilitações e Conformidade
             </h2>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Estamos registados na <strong>APA – Agência Portuguesa do Ambiente</strong> (transporte de resíduos) 
-              e na <strong>DGAV – Direção-Geral de Alimentação e Veterinária</strong> (transporte de 
-              subprodutos de origem animal e derivados), assegurando todos os requisitos específicos.
+              Estamos habilitados para o transporte de <strong>matérias perigosas, resíduos veterinários</strong> e <strong>alimentares</strong>, cumprindo todas as normas e regulamentações exigidas pelos organismos competentes.
+              Garantimos a segurança e a conformidade em todos os processos.
             </p>
             <div className="flex justify-center gap-6">
-              <div className="bg-card border-2 border-secondary rounded-lg p-6 w-32 h-32 flex items-center justify-center">
-                <span className="text-2xl font-bold text-secondary">APA</span>
+              <div className="bg-card border-2 border-secondary rounded-lg p-6 w-40 h-40 flex items-center justify-center">
+                <span className="text-lg font-semibold text-secondary text-center">Matérias Perigosas</span>
               </div>
-              <div className="bg-card border-2 border-secondary rounded-lg p-6 w-32 h-32 flex items-center justify-center">
-                <span className="text-2xl font-bold text-secondary">DGAV</span>
+              <div className="bg-card border-2 border-secondary rounded-lg p-6 w-40 h-40 flex items-center justify-center">
+                <span className="text-lg font-semibold text-secondary text-center">Resíduos Veterinários</span>
+              </div>
+              <div className="bg-card border-2 border-secondary rounded-lg p-6 w-40 h-40 flex items-center justify-center">
+                <span className="text-lg font-semibold text-secondary text-center">Resíduos Alimentares</span>
               </div>
             </div>
           </div>
         </div>
       </section>
-
+      
       <Footer />
     </div>
   );

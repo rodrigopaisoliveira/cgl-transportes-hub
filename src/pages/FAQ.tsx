@@ -48,8 +48,8 @@ const FAQ = () => {
       answer: "Realizamos tanto transporte de cargas completas como grupagem. Seja uma pequena encomenda ou uma carga de grandes dimensões, temos a solução adequada para as suas necessidades."
     },
     {
-      question: "Que certificações possuem?",
-      answer: "Estamos registados na APA (Agência Portuguesa do Ambiente) para transporte de resíduos e na DGAV (Direção-Geral de Alimentação e Veterinária) para transporte de subprodutos de origem animal e derivados, assegurando todos os requisitos específicos."
+      question: "Que habilitações possuem?",
+      answer: "Estamos habilitados para o transporte de matérias perigosas, resíduos veterinários e alimentares, cumprindo todas as normas e regulamentações exigidas pelos organismos competentes. Garantimos a segurança e a conformidade em todos os processos."
     }
   ];
 

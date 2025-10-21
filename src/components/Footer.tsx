@@ -100,12 +100,13 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Certifications */}
+            {/* Prémios */}
             <div className="mt-6">
-              <h5 className="font-semibold text-xs uppercase tracking-wider mb-2">Certificações</h5>
-              <div className="flex gap-2 text-xs text-primary-foreground/70">
-                <span className="bg-primary-foreground/10 px-2 py-1 rounded">APA</span>
-                <span className="bg-primary-foreground/10 px-2 py-1 rounded">DGAV</span>
+              <h5 className="font-semibold text-xs uppercase tracking-wider mb-2">Prémios Conquistados</h5>
+              <div className="text-xs text-primary-foreground/70">
+                <span>
+                          Fomos reconhecidos como **PME Líder** e destacamo-nos pela nossa excelência em serviços e inovação no mercado, procurando sempre superar as expectativas dos nossos clientes.
+                </span>
               </div>
             </div>
           </div>

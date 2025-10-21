@@ -19,19 +19,23 @@ const DESTINATION_EMAIL = "cgltransportestrafego@gmail.com";
 const Contactos = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    company: "",
-    email: "",
-    phone: "",
-    origin: "",
-    destination: "",
-    cargoType: "",
-    needsADR: false,
-    dimensions: "",
-    urgency: "",
-    message: ""
-  });
+const [formData, setFormData] = useState({
+  name: "",
+  company: "",
+  email: "",
+  phone: "",
+  origin: "",
+  destination: "",
+  cargoType: "",
+  needsADR: false, // Para o transporte ADR (mercadorias perigosas)
+  needsPerigosa: false, // Para o transporte de matérias perigosas
+  needsVeterinarios: false, // Para o transporte de resíduos veterinários
+  needsAlimentares: false, // Para o transporte de resíduos alimentares
+  dimensions: "",
+  urgency: "",
+  message: ""
+});
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -42,45 +46,51 @@ const Contactos = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  // --- NOVA FUNÇÃO PARA CONSTRUIR O CORPO DO EMAIL ---
-  const buildMailtoLink = () => {
-    // Cabeçalho e Saudação
-    let body = `Saudações,\n\n`;
-    body += `Sou ${formData.name}, `;
-    if (formData.company) {
-      body += `da empresa ${formData.company}, `;
-    }
-    body += `e gostaria de solicitar um orçamento para um serviço de transporte.\n\n`;
+// --- CORPO DO EMAIL ---
+const buildMailtoLink = () => {
+  // Cabeçalho e Saudação
+  let body = `Saudações,\n\n`;
+  body += `Sou ${formData.name}, `;
+  if (formData.company) {
+    body += `da empresa ${formData.company}, `;
+  }
+  body += `e gostaria de solicitar um orçamento para um serviço de transporte.\n\n`;
 
-    // Detalhes do Pedido
-    body += `--- DETALHES DO ORÇAMENTO ---\n`;
-    body += `Origem: ${formData.origin || "Não especificada"}\n`;
-    body += `Destino: ${formData.destination || "Não especificado"}\n`;
-    body += `Tipo de Mercadoria: ${formData.cargoType || "Não especificado"}\n`;
-    body += `Dimensões/Peso: ${formData.dimensions || "Não especificado"}\n`;
-    body += `Urgência: ${formData.urgency || "Não especificada"}\n`;
-    body += `Transporte ADR: ${formData.needsADR ? "SIM (Mercadoria Perigosa)" : "NÃO"}\n\n`;
+  // Detalhes do Pedido
+  body += `--- DETALHES DO ORÇAMENTO ---\n`;
+  body += `Origem: ${formData.origin || "Não especificada"}\n`;
+  body += `Destino: ${formData.destination || "Não especificado"}\n`;
+  body += `Tipo de Mercadoria: ${formData.cargoType || "Não especificado"}\n`;
+  body += `Dimensões/Peso: ${formData.dimensions || "Não especificado"}\n`;
+  body += `Urgência: ${formData.urgency || "Não especificada"}\n`;
+  body += `Transporte ADR: ${formData.needsADR ? "SIM (Mercadoria Perigosa)" : "NÃO"}\n\n`;
 
-    // Mensagem Adicional
-    if (formData.message) {
-      body += `Mensagem Adicional:\n${formData.message}\n\n`;
-    }
+  // Adicionar as opções de transporte com as checkboxes
+  body += `Necessita de transporte de:\n`;
+  body += formData.needsPerigosa ? `- Matérias Perigosas\n` : "";
+  body += formData.needsVeterinarios ? `- Resíduos Veterinários\n` : "";
+  body += formData.needsAlimentares ? `- Resíduos Alimentares\n` : "";
 
-    // Contactos
-    body += `--- CONTACTOS ---\n`;
-    body += `Nome: ${formData.name}\n`;
-    body += `Email: ${formData.email}\n`;
-    body += `Telefone: ${formData.phone}\n`;
-    if (formData.company) {
-      body += `Empresa: ${formData.company}\n`;
-    }
+  // Mensagem Adicional
+  if (formData.message) {
+    body += `Mensagem Adicional:\n${formData.message}\n\n`;
+  }
 
-    // Assunto
-    const subject = `Pedido de Orçamento - ${formData.company || formData.name}`;
+  // Contactos
+  body += `--- CONTACTOS ---\n`;
+  body += `Nome: ${formData.name}\n`;
+  body += `Email: ${formData.email}\n`;
+  body += `Telefone: ${formData.phone}\n`;
+  if (formData.company) {
+    body += `Empresa: ${formData.company}\n`;
+  }
 
-    // Codificação para o link mailto
-    return `mailto:${DESTINATION_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  };
+  // Assunto
+  const subject = `Pedido de Orçamento - ${formData.company || formData.name}`;
+
+  // Codificação para o link mailto
+  return `mailto:${DESTINATION_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+};
   // ----------------------------------------------------
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -102,17 +112,20 @@ const Contactos = () => {
 
       // Resetar o formulário
       setFormData({
-        name: "",
-        company: "",
-        email: "",
-        phone: "",
-        origin: "",
-        destination: "",
-        cargoType: "",
-        needsADR: false,
-        dimensions: "",
-        urgency: "",
-        message: ""
+      name: "",
+      company: "",
+      email: "",
+      phone: "",
+      origin: "",
+      destination: "",
+      cargoType: "",
+      needsADR: false,  // Mantém a propriedade needsADR
+      needsPerigosa: false,  // Adiciona o estado needsPerigosa
+      needsVeterinarios: false,  // Adiciona o estado needsVeterinarios
+      needsAlimentares: false,  // Adiciona o estado needsAlimentares
+      dimensions: "",
+      urgency: "",
+      message: ""
       });
       setIsSubmitting(false);
     }, 500);
@@ -199,8 +212,7 @@ const Contactos = () => {
                     <div>
                       <div className="text-xs text-muted-foreground mb-1">Horário</div>
                       <div className="font-medium text-sm">
-                        Segunda a Sexta: 09:00 - 18:00<br />
-                        <span className="text-xs text-muted-foreground">Serviço de urgências 24/7</span>
+                        Serviço 24/7<br />
                       </div>
                     </div>
                   </div>
@@ -351,20 +363,59 @@ const Contactos = () => {
                       placeholder="Ex: 2x2x2m, 1000kg"
                     />
                   </div>
-
-                  <div className="flex items-center space-x-2">
-                    <Checkbox
-                      id="adr"
-                      checked={formData.needsADR}
-                      onCheckedChange={(checked) => setFormData({ ...formData, needsADR: checked as boolean })}
-                    />
-                    <label
-                      htmlFor="adr"
-                      className="text-sm font-medium text-foreground cursor-pointer"
-                    >
-                      Necessita de transporte ADR (mercadorias perigosas)
+                  {/* Pergunta sobre transporte */}
+                  <div className="flex flex-col mb-4">
+                    <label className="block text-sm font-medium mb-2 text-foreground">
+                      Necessita de transporte de:
                     </label>
+                    <div className="flex items-center space-x-4">
+                      {/* Transporte de matérias perigosas */}
+                      <div className="flex items-center space-x-2">
+                        <Checkbox
+                          id="perigosa"
+                          checked={formData.needsPerigosa}
+                          onCheckedChange={(checked) => setFormData({ ...formData, needsPerigosa: checked as boolean })}
+                        />
+                        <label
+                          htmlFor="perigosa"
+                          className="text-sm font-medium text-foreground cursor-pointer"
+                        >
+                          Matérias perigosas
+                        </label>
+                      </div>
+
+                      {/* Transporte de resíduos veterinários */}
+                      <div className="flex items-center space-x-2">
+                        <Checkbox
+                          id="veterinarios"
+                          checked={formData.needsVeterinarios}
+                          onCheckedChange={(checked) => setFormData({ ...formData, needsVeterinarios: checked as boolean })}
+                        />
+                        <label
+                          htmlFor="veterinarios"
+                          className="text-sm font-medium text-foreground cursor-pointer"
+                        >
+                          Resíduos veterinários
+                        </label>
+                      </div>
+
+                      {/* Transporte de resíduos alimentares */}
+                      <div className="flex items-center space-x-2">
+                        <Checkbox
+                          id="alimentares"
+                          checked={formData.needsAlimentares}
+                          onCheckedChange={(checked) => setFormData({ ...formData, needsAlimentares: checked as boolean })}
+                        />
+                        <label
+                          htmlFor="alimentares"
+                          className="text-sm font-medium text-foreground cursor-pointer"
+                        >
+                          Resíduos alimentares
+                        </label>
+                      </div>
+                    </div>
                   </div>
+
 
                   <div>
                     <label className="block text-sm font-medium mb-2 text-foreground">
@@ -378,6 +429,7 @@ const Contactos = () => {
                       rows={4}
                     />
                   </div>
+
 
                   <div className="flex items-start space-x-2">
                     <Checkbox id="privacy" required />
